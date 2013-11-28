@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+	<title>Custom Select</title>
+
+	<link rel="stylesheet" href="assets/styles/styles.css" />
+	<link rel="stylesheet" href="assets/styles/custom-select.css" />
+
+	<script src="assets/scripts/vendor/modernizr-2.7.0.custom.min.js"></script>
+	<script src="assets/scripts/vendor/json2.js"></script>
+	<script src="assets/scripts/vendor/jquery-1.10.2.min.js"></script>
+	<script src="assets/scripts/vendor/mustache-0.7.3.js"></script>
+	<script src="assets/scripts/vendor/underscore-1.5.2.min.js"></script>
+	<script src="assets/scripts/vendor/backbone-1.1.0.min.js"></script>
+	<script src="assets/scripts/classes/custom-select.js"></script>
+
+	<script>
+		$(document).on('CustomSelect:selectChanged', function(e, data){
+			console.log('CustomSelect', data);
+		});
+		$(function () {
+			var $select = $('#customselect');
+			var customSelect = new CustomSelect($select);
+		});
+	</script>
+
+</head>
+<body>
+
+	<div id="content">
+
+		<h1>Custom Select</h1>
+
+		<fieldset id="customselect-form" class="text-fields">
+			<ol>
+				<li>
+					<label for="customselect" class="block">Label for Custom Select</label>
+					<select id="customselect" class="custom-select">
+						<option value="00">Custom Select</option>
+						<option value="a1">Lorem ipsum dolor sit amet</option>
+						<option value="b2">consectetur adipisicing elit</option>
+						<option value="c3">sed do eiusmod tempor incididunt ut</option>
+						<option value="d4">labore et dolore magna aliqua</option>
+						<option value="e5">Ut enim ad minim veniam</option>
+						<option value="f6">quis nostrud exercitation ullamco</option>
+						<option value="g7">laboris nisi ut aliquip ex ea commodo consequat</option>
+						<option value="h8">Duis aute irure dolor in reprehenderit</option>
+						<option value="i9">in voluptate velit esse cillum dolore</option>
+					</select>
+				</li>
+			</ol>
+		</fieldset>
+
+		<script id="tmpCustomSelect" type="text/template" class="template">
+			<span class="custom-select-label">{{label}}</span>
+			<span class="custom-select-arrow"></span>
+			<div class="custom-select-list">
+				<ul>
+					{{#items}}
+					<li><a href="#{{rel}}" rel="{{rel}}" class="{{#active}}active{{/active}}">{{text}}</a></li>
+					{{/items}}
+				</ul>
+			</div>
+		</script>
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+
+select.custom-select.replaced {
+	opacity: 0;
+	position: absolute;
+}
+
+.custom-select-container {
+	width: 340px;
+	height: 44px;
+	outline: 0;
+	position: relative;
+	z-index: 9;
+}
+
+	.custom-select-container .custom-select-label {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		display: block;
+		cursor: pointer;
+		width: 268px;
+		height: 44px;
+		background-color: #777;
+		padding: 10px 12px;
+		color: #fff;
+		font-size: 16px;
+		line-height: 24px;
+		white-space: nowrap;
+		overflow: hidden;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 2;
+	}
+
+	.custom-select-container .custom-select-arrow {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		display: block;
+		cursor: pointer;
+		width: 70px;
+		height: 44px;
+		background: #222;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.custom-select-container .custom-select-arrow:after {
+		content: "";
+		display: block;
+		width: 22px;
+		height: 16px;
+		margin: -8px 0 0 -11px;
+		background: transparent url('../images/sprite-arrows.png') no-repeat -140px -100px;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+	}
+
+	.custom-select-container .custom-select-list {
+		-webkit-transition: max-height .3s ease;
+		-moz-transition: max-height .3s ease;
+		transition: max-height .3s ease;
+		width: 268px;
+		height: auto;
+		max-height: 44px;
+		overflow: hidden;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+	}
+
+		.custom-select-container .custom-select-list > ul {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+			.custom-select-container .custom-select-list > ul > li {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				width: 100%;
+				min-height: 44px;
+				border-top: 1px solid #333;
+				margin: 0;
+				padding: 0;
+			}
+			.custom-select-container .custom-select-list > ul > li:first-child {
+				border-top: 0;
+			}
+				.custom-select-container .custom-select-list > ul > li a {
+					-webkit-box-sizing: border-box;
+					-moz-box-sizing: border-box;
+					box-sizing: border-box;
+					display: block;
+					cursor: pointer;
+					width: 100%;
+					height: 100%;
+					background-color: #777;
+					color: #fff;
+					font-size: 16px;
+					line-height: 24px;
+					padding: 10px 12px;
+				}
+				.custom-select-container .custom-select-list > ul > li a:hover,
+				.custom-select-container .custom-select-list > ul > li a:focus,
+				.custom-select-container .custom-select-list > ul > li a.active {
+					background-color: #aaa;
+					color: #222;
+				}
+
+	.custom-select-container.active .custom-select-label {
+		display: none;
+	}
+
+	.custom-select-container.active .custom-select-arrow {
+		background-color: #aaa;
+	}
+	.custom-select-container.active .custom-select-arrow:after {
+		background-position: -140px -60px;
+	}
+
+	.custom-select-container.active .custom-select-list {
+		/* 440px will accommodate 10 single-line items, adjust as necessary */
+		/*max-height: 440px;*/
+		max-height: 546px;
+	}
+
+}
+
