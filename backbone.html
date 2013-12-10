@@ -13,7 +13,7 @@
 	<script src="assets/scripts/vendor/modernizr-2.7.0.custom.min.js"></script>
 	<script src="assets/scripts/vendor/json2.js"></script>
 	<script src="assets/scripts/vendor/jquery-1.10.2.min.js"></script>
-	<script src="assets/scripts/vendor/mustache-0.7.2.js"></script>
+	<script src="assets/scripts/vendor/mustache-0.7.3.js"></script>
 	<script src="assets/scripts/vendor/underscore-1.5.2.min.js"></script>
 	<script src="assets/scripts/vendor/backbone-1.1.0.min.js"></script>
 	<script src="assets/scripts/views/custom-select.js"></script>
@@ -21,24 +21,20 @@
 	<script>
 		var App = Backbone.View.extend({
 			initialize: function(){
-				this.timeSelector = new TimeSelector({date:dateStr});
-				this.listenTo(this.timeSelector, 'TimeSelector:gotTime', this.onGotTime);
-				this.render();
+				var $select = this.$el.find('select');
+				this.customSelect = new CustomSelect({select:$select});
+				this.listenTo(this.customSelect, 'CustomSelect:selectChanged', this.onSelectChanged);
 			},
-			render: function(){
-				var html = this.timeSelector.el;
-				this.$el.html(html);
-				//return this;
-			},
-			onGotTime: function(date){
-				console.log(date);
+			//render: function(){},
+			onSelectChanged: function(data){
+				console.log(data);
 			}
 		});
 		$(document).on('CustomSelect:selectChanged', function(e, data){
 			console.log('CustomSelect', data);
 		});
 		$(function () {
-			el = $('#app-time-selector');
+			el = $('#customselect-form');
 			app = new App({el:el});
 		});
 	</script>

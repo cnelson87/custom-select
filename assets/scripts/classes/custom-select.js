@@ -12,7 +12,7 @@ var CustomSelect = function ($select, objOptions) {
 	this.template = null;
 
 	this.options = $.extend({
-		classEl: 'custom-select-container',
+		className: 'custom-select-container',
 		selectorLabel: '.custom-select-label',
 		selectorTemplate: '#tmpCustomSelect'
 	}, objOptions || {});
@@ -22,17 +22,19 @@ var CustomSelect = function ($select, objOptions) {
 };
 
 CustomSelect.prototype = {
+
+/**
+*	Private Methods
+**/
 	_init: function () {
 		var self = this;
 
 		this.template = $(this.options.selectorTemplate).html();
 
-		this.$select.addClass('replaced');
-
 		this.$el = $('<div></div>',{
-			'class': this.options.classEl,
+			'class': this.options.className,
 			'tabindex': '-1'
-		}).appendTo(this.$parent);
+		});
 
 		this._buildData();
 
@@ -107,6 +109,11 @@ CustomSelect.prototype = {
 
 	},
 
+
+/**
+*	Event Handlers
+**/
+
 	__onSelectChange: function (e) {
 		var val = this.$select.val();
 		$.event.trigger('CustomSelect:selectChanged', [val]);
@@ -131,7 +138,7 @@ CustomSelect.prototype = {
 
 
 /**
-*	Public Methods
+*	Public API
 **/
 
 	updateUI: function () {
@@ -158,7 +165,8 @@ CustomSelect.prototype = {
 
 	render: function () {
 		var html = Mustache.to_html(this.template, this.obData);
-		this.$el.html(html);
+		this.$el.html(html).appendTo(this.$parent);
+		this.$select.addClass('replaced');
 		return this.$el;
 	}
 
