@@ -1,5 +1,5 @@
 
-var CustomSelect = function ($select, objOptions) {
+var CustomSelect = function($select, objOptions){
 
 	this.$select = $select;
 	this.$options = this.$select.children('option');
@@ -26,7 +26,7 @@ CustomSelect.prototype = {
 /**
 *	Private Methods
 **/
-	_init: function () {
+	_init: function(){
 		var self = this;
 
 		this.template = $(this.options.selectorTemplate).html();
@@ -47,7 +47,7 @@ CustomSelect.prototype = {
 
 	},
 
-	_buildData: function () {
+	_buildData: function(){
 		var self = this;
 		var index = this.getIndex();
 		var label = this.getLabel();
@@ -74,38 +74,35 @@ CustomSelect.prototype = {
 
 	},
 
-	_bindEvents: function () {
+	_bindEvents: function(){
 		var self = this;
 
-		this.$select.on('change', function(e) {
-			self.__onSelectChange(e);
-		});
+		this.$select
+			.on('change', function(e){
+				self.__onSelectChange(e);
+			})
+			.on('focus', function(e){
+				self.__onSelectFocus(e);
+			});
 
-		this.$select.on('focus', function(e) {
-			self.__onSelectFocus(e);
-		});
-
-		this.$el.on('focusin', function(e) {
-			self.__onActive();
-		});
-
-		this.$el.on('focusout', function(e) {
-			self.__onInactive();
-		});
-
-		this.$el.on('mouseenter', function(e) {
-			self.__onActive();
-		});
-
-		this.$el.on('mouseleave', function(e) {
-			self.__onInactive();
-		});
-
-		this.$el.on('click', 'a', function(e) {
-			e.preventDefault();
-			self.$current = $(this);
-			self.__onClick(e);
-		});
+		this.$el
+			.on('focusin', function(e){
+				self.__onActive();
+			})
+			.on('focusout', function(e){
+				self.__onInactive();
+			})
+			.on('mouseenter', function(e){
+				self.__onActive();
+			})
+			.on('mouseleave', function(e){
+				self.__onInactive();
+			})
+			.on('click', 'a', function(e){
+				e.preventDefault();
+				self.$current = $(this);
+				self.__onClick(e);
+			});
 
 	},
 
@@ -114,24 +111,29 @@ CustomSelect.prototype = {
 *	Event Handlers
 **/
 
-	__onSelectChange: function (e) {
+	__onSelectChange: function(e){
+		//console.log('__onSelectChange');
 		var val = this.$select.val();
 		$.event.trigger('CustomSelect:selectChanged', [val]);
 	},
 
-	__onSelectFocus: function (e) {
+	__onSelectFocus: function(e){
+		//console.log('__onSelectFocus');
 		this.$el.focus();
 	},
 
-	__onActive: function (e) {
+	__onActive: function(e){
+		//console.log('__onActive');
 		this.$el.addClass('active');
 	},
 
-	__onInactive: function (e) {
+	__onInactive: function(e){
+		//console.log('__onInactive');
 		this.$el.removeClass('active');
 	},
 
-	__onClick: function (e) {
+	__onClick: function(e){
+		//console.log('__onClick');
 		this.updateUI();
 		this.__onInactive();
 	},
@@ -141,7 +143,7 @@ CustomSelect.prototype = {
 *	Public API
 **/
 
-	updateUI: function () {
+	updateUI: function(){
 		var val = this.$current.attr('rel');
 		var text = this.$current.text();
 
@@ -155,15 +157,15 @@ CustomSelect.prototype = {
 
 	},
 
-	getIndex: function () {
+	getIndex: function(){
 		return this.$select.prop('selectedIndex');
 	},
 
-	getLabel: function () {
+	getLabel: function(){
 		return this.$select.find('option:selected').text();
 	},
 
-	render: function () {
+	render: function(){
 		var html = Mustache.to_html(this.template, this.obData);
 		this.$el.html(html).appendTo(this.$parent);
 		this.$select.addClass('replaced');

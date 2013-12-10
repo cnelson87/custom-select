@@ -1,8 +1,4 @@
 
-/**
-*	WORK IN PROGRESS
-**/
-
 var CustomSelect = Backbone.View.extend({
 
 	tagName: 'div',
@@ -14,8 +10,6 @@ var CustomSelect = Backbone.View.extend({
 		'focusout': '__onInactive',
 		'mouseenter': '__onActive',
 		'mouseleave': '__onInactive',
-		'change select': '__onSelectChange',
-		'focus select': '__onSelectFocus',
 		'click a': '__onClick'
 	},
 
@@ -24,7 +18,7 @@ var CustomSelect = Backbone.View.extend({
 *	Private Methods
 **/
 
-	initialize: function (objOptions) {
+	initialize: function(objOptions){
 		this.$select = objOptions.select;
 		this.$options = this.$select.children('option');
 		this.$parent = this.$select.parent();
@@ -36,6 +30,8 @@ var CustomSelect = Backbone.View.extend({
 
 		this._buildData();
 
+		this._bindEvents();
+
 		this.render();
 
 		this.$links = this.$el.find('a');
@@ -43,7 +39,7 @@ var CustomSelect = Backbone.View.extend({
 
 	},
 
-	_buildData: function () {
+	_buildData: function(){
 		var self = this;
 		var index = this.getIndex();
 		var label = this.getLabel();
@@ -67,38 +63,16 @@ var CustomSelect = Backbone.View.extend({
 
 	},
 
-	_bindEvents: function () {
+	_bindEvents: function(){
 		var self = this;
 
-		this.$select.on('change', function(e) {
-			self.__onSelectChange(e);
-		});
-
-		this.$select.on('focus', function(e) {
-			self.__onSelectFocus(e);
-		});
-
-		// this.$el.on('focusin', function(e) {
-		// 	self.__onActive();
-		// });
-
-		// this.$el.on('focusout', function(e) {
-		// 	self.__onInactive();
-		// });
-
-		// this.$el.on('mouseenter', function(e) {
-		// 	self.__onActive();
-		// });
-
-		// this.$el.on('mouseleave', function(e) {
-		// 	self.__onInactive();
-		// });
-
-		// this.$el.on('click', 'a', function(e) {
-		// 	e.preventDefault();
-		// 	self.$current = $(this);
-		// 	self.__onClick(e);
-		// });
+		this.$select
+			.on('change', function(e){
+				self.__onSelectChange(e);
+			})
+			.on('focus', function(e){
+				self.__onSelectFocus(e);
+			});
 
 	},
 
@@ -107,25 +81,30 @@ var CustomSelect = Backbone.View.extend({
 *	Event Handlers
 **/
 
-	__onSelectChange: function (e) {
+	__onSelectChange: function(e){
+		//console.log('__onSelectChange');
 		var val = this.$select.val();
 		$.event.trigger('CustomSelect:selectChanged', [val]);
 		this.trigger('CustomSelect:selectChanged', val);
 	},
 
-	__onSelectFocus: function (e) {
+	__onSelectFocus: function(e){
+		//console.log('__onSelectFocus');
 		this.$el.focus();
 	},
 
-	__onActive: function (e) {
+	__onActive: function(e){
+		//console.log('__onActive');
 		this.$el.addClass('active');
 	},
 
-	__onInactive: function (e) {
+	__onInactive: function(e){
+		//console.log('__onInactive');
 		this.$el.removeClass('active');
 	},
 
-	__onClick: function (e) {
+	__onClick: function(e){
+		//console.log('__onClick');
 		e.preventDefault();
 		this.$current = $(e.target);
 		this.updateUI();
@@ -137,7 +116,7 @@ var CustomSelect = Backbone.View.extend({
 *	Public API
 **/
 
-	updateUI: function () {
+	updateUI: function(){
 		var val = this.$current.attr('rel');
 		var text = this.$current.text();
 
@@ -151,15 +130,15 @@ var CustomSelect = Backbone.View.extend({
 
 	},
 
-	getIndex: function () {
+	getIndex: function(){
 		return this.$select.prop('selectedIndex');
 	},
 
-	getLabel: function () {
+	getLabel: function(){
 		return this.$select.find('option:selected').text();
 	},
 
-	render: function () {
+	render: function(){
 		var html = Mustache.to_html(this.template, this.obData);
 		this.$el.html(html).appendTo(this.$parent);
 		this.$select.addClass('replaced');
