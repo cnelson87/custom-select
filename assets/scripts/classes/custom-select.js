@@ -113,7 +113,12 @@ CustomSelect.prototype = {
 
 	__onSelectChange: function(e){
 		//console.log('__onSelectChange');
-		var val = this.$select.val();
+		var index = this.getIndex();
+		var val = this.getValue();
+		var $current = $(this.$links[index]);
+		if ($current[0] !== this.$current[0]) {
+			$current.click();
+		}
 		$.event.trigger('CustomSelect:selectChanged', [val]);
 	},
 
@@ -144,7 +149,8 @@ CustomSelect.prototype = {
 **/
 
 	updateUI: function(){
-		var val = this.$current.attr('rel');
+		var val = this.getValue();
+		var rel = this.$current.attr('rel');
 		var text = this.$current.text();
 
 		this.$label.text(text);
@@ -152,8 +158,10 @@ CustomSelect.prototype = {
 		this.$links.removeClass('active');
 		this.$current.addClass('active');
 
-		this.$select.val(val);
-		this.$select.change();
+		if (rel !== val) {
+			this.$select.val(rel);
+			this.$select.change();
+		}
 
 	},
 
@@ -163,6 +171,10 @@ CustomSelect.prototype = {
 
 	getLabel: function(){
 		return this.$select.find('option:selected').text();
+	},
+
+	getValue: function(){
+		return this.$select.val();
 	},
 
 	render: function(){

@@ -19,12 +19,13 @@
 	<script src="assets/scripts/classes/custom-select.js"></script>
 
 	<script>
+		var customSelect;
 		$(document).on('CustomSelect:selectChanged', function(e, data){
 			console.log('CustomSelect', data);
 		});
 		$(function(){
 			var $select = $('#customselect');
-			var customSelect = new CustomSelect($select);
+			customSelect = new CustomSelect($select);
 		});
 	</script>
 
