@@ -8,8 +8,8 @@ var CustomSelect = Backbone.View.extend({
 	events: {
 		'focusin': '__onActive',
 		'focusout': '__onInactive',
-		'mouseenter': '__onActive',
-		'mouseleave': '__onInactive',
+		// 'mouseenter': '__onActive',
+		// 'mouseleave': '__onInactive',
 		'click a': '__onClick'
 	},
 
@@ -22,9 +22,9 @@ var CustomSelect = Backbone.View.extend({
 		this.$select = objOptions.select;
 		this.$options = this.$select.children('option');
 		this.$parent = this.$select.parent();
-		this.$label = null;
 		this.$links = null;
 		this.$current = null;
+		this.$label = null;
 
 		this.template = $('#tmpCustomSelect').html();
 
@@ -35,6 +35,7 @@ var CustomSelect = Backbone.View.extend({
 		this.render();
 
 		this.$links = this.$el.find('a');
+		this.$current = $(this.$links[0]);
 		this.$label = this.$el.find('.custom-select-label');
 
 	},

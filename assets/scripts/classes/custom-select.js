@@ -5,9 +5,9 @@ var CustomSelect = function($select, objOptions){
 	this.$options = this.$select.children('option');
 	this.$parent = this.$select.parent();
 	this.$el = null;
-	this.$label = null;
 	this.$links = null;
 	this.$current = null;
+	this.$label = null;
 
 	this.template = null;
 
@@ -43,6 +43,7 @@ CustomSelect.prototype = {
 		this.render();
 
 		this.$links = this.$el.find('a');
+		this.$current = $(this.$links[0]);
 		this.$label = this.$el.find(this.options.selectorLabel);
 
 	},
@@ -92,12 +93,12 @@ CustomSelect.prototype = {
 			.on('focusout', function(e){
 				self.__onInactive();
 			})
-			.on('mouseenter', function(e){
-				self.__onActive();
-			})
-			.on('mouseleave', function(e){
-				self.__onInactive();
-			})
+			// .on('mouseenter', function(e){
+			// 	self.__onActive();
+			// })
+			// .on('mouseleave', function(e){
+			// 	self.__onInactive();
+			// })
 			.on('click', 'a', function(e){
 				e.preventDefault();
 				self.$current = $(this);
