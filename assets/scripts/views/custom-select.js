@@ -18,7 +18,7 @@ var CustomSelect = Backbone.View.extend({
 *	Private Methods
 **/
 
-	initialize: function(objOptions){
+	initialize: function(objOptions) {
 		this.$select = objOptions.select;
 		this.$options = this.$select.children('option');
 		this.$parent = this.$select.parent();
@@ -40,8 +40,7 @@ var CustomSelect = Backbone.View.extend({
 
 	},
 
-	_buildData: function(){
-		var self = this;
+	_buildData: function() {
 		var index = this.getIndex();
 		var label = this.getLabel();
 		var $opt;
@@ -64,7 +63,7 @@ var CustomSelect = Backbone.View.extend({
 
 	},
 
-	_bindEvents: function(){
+	_bindEvents: function() {
 		var self = this;
 
 		this.$select
@@ -82,7 +81,7 @@ var CustomSelect = Backbone.View.extend({
 *	Event Handlers
 **/
 
-	__onSelectChange: function(e){
+	__onSelectChange: function(e) {
 		//console.log('__onSelectChange');
 		var index = this.getIndex();
 		var val = this.getValue();
@@ -94,22 +93,22 @@ var CustomSelect = Backbone.View.extend({
 		this.trigger('CustomSelect:selectChanged', val);
 	},
 
-	__onSelectFocus: function(e){
+	__onSelectFocus: function(e) {
 		//console.log('__onSelectFocus');
 		this.$el.focus();
 	},
 
-	__onActive: function(e){
+	__onActive: function(e) {
 		//console.log('__onActive');
 		this.$el.addClass('active');
 	},
 
-	__onInactive: function(e){
+	__onInactive: function(e) {
 		//console.log('__onInactive');
 		this.$el.removeClass('active');
 	},
 
-	__onClick: function(e){
+	__onClick: function(e) {
 		//console.log('__onClick');
 		e.preventDefault();
 		this.$current = $(e.target);
@@ -122,7 +121,7 @@ var CustomSelect = Backbone.View.extend({
 *	Public API
 **/
 
-	updateUI: function(){
+	updateUI: function() {
 		var val = this.getValue();
 		var rel = this.$current.attr('rel');
 		var text = this.$current.text();
@@ -139,19 +138,19 @@ var CustomSelect = Backbone.View.extend({
 
 	},
 
-	getIndex: function(){
+	getIndex: function() {
 		return this.$select.prop('selectedIndex');
 	},
 
-	getLabel: function(){
+	getLabel: function() {
 		return this.$select.find('option:selected').text();
 	},
 
-	getValue: function(){
+	getValue: function() {
 		return this.$select.val();
 	},
 
-	render: function(){
+	render: function() {
 		var html = Mustache.to_html(this.template, this.obData);
 		this.$el.html(html).appendTo(this.$parent);
 		this.$select.addClass('replaced');

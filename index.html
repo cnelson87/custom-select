@@ -20,10 +20,10 @@
 
 	<script>
 		var customSelect;
-		$(document).on('CustomSelect:selectChanged', function(e, data){
+		$(document).on('CustomSelect:selectChanged', function(e, data) {
 			console.log('CustomSelect', data);
 		});
-		$(function(){
+		$(function() {
 			var $select = $('#customselect');
 			customSelect = new CustomSelect($select);
 		});

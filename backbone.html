@@ -20,20 +20,20 @@
 
 	<script>
 		var App = Backbone.View.extend({
-			initialize: function(){
+			initialize: function() {
 				var $select = this.$el.find('select');
 				this.customSelect = new CustomSelect({select: $select});
 				this.listenTo(this.customSelect, 'CustomSelect:selectChanged', this.onSelectChanged);
 			},
 			//render: function(){},
-			onSelectChanged: function(data){
+			onSelectChanged: function(data) {
 				console.log('onSelectChanged', data);
 			}
 		});
-		$(document).on('CustomSelect:selectChanged', function(e, data){
+		$(document).on('CustomSelect:selectChanged', function(e, data) {
 			console.log('CustomSelect', data);
 		});
-		$(function(){
+		$(function() {
 			var $el = $('#customselect-form');
 			var app = new App({el: $el});
 		});
