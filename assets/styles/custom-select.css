@@ -13,9 +13,6 @@ select.custom-select.replaced {
 }
 
 	.custom-select-container .custom-select-label {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
 		display: block;
 		cursor: pointer;
 		width: 268px;
@@ -34,9 +31,6 @@ select.custom-select.replaced {
 	}
 
 	.custom-select-container .custom-select-arrow {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
 		display: block;
 		cursor: pointer;
 		width: 70px;
@@ -51,16 +45,17 @@ select.custom-select.replaced {
 		display: block;
 		width: 22px;
 		height: 16px;
-		margin: -8px 0 0 -11px;
 		background: transparent url('../images/sprite-arrows.png') no-repeat -140px -100px;
 		position: absolute;
-		left: 50%;
-		top: 50%;
+		left: calc(50% - 11px);
+		top: calc(50% - 8px);
 	}
 
 	.custom-select-container .custom-select-list {
 		-webkit-transition: max-height .3s ease;
 		-moz-transition: max-height .3s ease;
+		-ie-transition: max-height .3s ease;
+		-o-transition: max-height .3s ease;
 		transition: max-height .3s ease;
 		width: 268px;
 		height: auto;
@@ -78,9 +73,6 @@ select.custom-select.replaced {
 			padding: 0;
 		}
 			.custom-select-container .custom-select-list > ul > li {
-				-webkit-box-sizing: border-box;
-				-moz-box-sizing: border-box;
-				box-sizing: border-box;
 				width: 100%;
 				min-height: 44px;
 				border-top: 1px solid #333;
@@ -90,10 +82,7 @@ select.custom-select.replaced {
 			.custom-select-container .custom-select-list > ul > li:first-child {
 				border-top: 0;
 			}
-				.custom-select-container .custom-select-list > ul > li a {
-					-webkit-box-sizing: border-box;
-					-moz-box-sizing: border-box;
-					box-sizing: border-box;
+				.custom-select-container .custom-select-list > ul > li > a {
 					display: block;
 					cursor: pointer;
 					width: 100%;
@@ -104,9 +93,9 @@ select.custom-select.replaced {
 					line-height: 24px;
 					padding: 10px 12px;
 				}
-				.custom-select-container .custom-select-list > ul > li a:hover,
-				.custom-select-container .custom-select-list > ul > li a:focus,
-				.custom-select-container .custom-select-list > ul > li a.active {
+				.custom-select-container .custom-select-list > ul > li > a:hover,
+				.custom-select-container .custom-select-list > ul > li > a:focus,
+				.custom-select-container .custom-select-list > ul > li > a.active {
 					background-color: #aaa;
 					color: #222;
 				}
