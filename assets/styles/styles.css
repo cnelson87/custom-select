@@ -15,10 +15,9 @@ h1, h2, h3 {
 	color: #999;
 	font-weight: normal;
 	line-height: 1.2;
-	margin: 0 0 0.2em 0;
+	margin: 0 0 0.5em 0;
 }
 h4, h5, h6 {
-	color: #666;
 	font-weight: bold;
 	line-height: 1.2;
 	margin: 0 0 0.2em 0;
@@ -128,6 +127,16 @@ fieldset {
 		vertical-align: top;
 	}
 
+	fieldset.cb-rb-fields ol,
+	fieldset.cb-rb-fields ol > li {
+		list-style: none;
+		margin-bottom: 0.5em;
+	}
+	fieldset.cb-rb-fields.inline ol > li {
+		float: left;
+		width: 25%;
+	}
+
 input, select, textarea, button {
 	color: #333;
 	font-family: Arial, Verdana, sans-serif;
@@ -171,8 +180,13 @@ input[type=tel],
 input[type=number] {
 	width: 80px;
 }
+input[type=range] {
+	cursor: pointer;
+	width: 200px;
+}
 input[type=checkbox],
 input[type=radio] {
+	cursor: pointer;
 	width: 16px;
 	height: 16px;
 	background: none;
@@ -189,10 +203,17 @@ textarea {
 	height: 3.6em; /* x3 line-height */
 	resize: none;
 }
-input[type=submit], button {
+input[type=submit],
+input[type=button],
+button {
+	cursor: pointer;
 	font-weight: bold;
 	background: #ddd;
 	padding: 2px 16px;
+}
+
+.clear {
+	clear: both;
 }
 
 .template {
