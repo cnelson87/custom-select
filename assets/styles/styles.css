@@ -120,7 +120,7 @@ fieldset {
 	}
 	fieldset.text-fields label.block {
 		display: block;
-		width: auto;
+		width: 200px;
 		margin-bottom: 4px;
 	}
 	fieldset.text-fields label + textarea {
