@@ -1,5 +1,5 @@
 
-var CustomSelect = Backbone.View.extend({
+var CustomSelectView = Backbone.View.extend({
 
 	tagName: 'div',
 	className: 'custom-select-container',
@@ -67,10 +67,10 @@ var CustomSelect = Backbone.View.extend({
 		var self = this;
 
 		this.$select
-			.on('change', function(e){
+			.on('change', function(e) {
 				self.__onSelectChange(e);
 			})
-			.on('focus', function(e){
+			.on('focus', function(e) {
 				self.__onSelectFocus(e);
 			});
 

@@ -14,19 +14,18 @@
 	<script src="assets/scripts/vendor/modernizr.custom.min.js"></script>
 	<script src="assets/scripts/vendor/jquery.min.js"></script>
 	<script src="assets/scripts/vendor/mustache.min.js"></script>
-	<script src="assets/scripts/vendor/underscore.min.js"></script>
-	<script src="assets/scripts/vendor/backbone.min.js"></script>
-	<script src="assets/scripts/vendor/backbone-super.min.js"></script>
-	<script src="assets/scripts/views/custom-select.js"></script>
+	<script src="assets/scripts/vendor/underscore-min.js"></script>
+	<script src="assets/scripts/vendor/backbone-min.js"></script>
+	<script src="assets/scripts/vendor/backbone-super-min.js"></script>
+	<script src="assets/scripts/views/custom-select-view.js"></script>
 
 	<script>
 		var App = Backbone.View.extend({
 			initialize: function() {
 				var $select = this.$el.find('select');
-				this.customSelect = new CustomSelect({select: $select});
+				this.customSelect = new CustomSelectView({select: $select});
 				this.listenTo(this.customSelect, 'CustomSelect:selectChanged', this.onSelectChanged);
 			},
-			//render: function(){},
 			onSelectChanged: function(data) {
 				console.log('onSelectChanged', data);
 			}
@@ -67,13 +66,13 @@
 			</ol>
 		</fieldset>
 
-		<script id="tmpCustomSelect" type="text/template" class="template">
+		<script id="tmpCustomSelect" type="text/template">
 			<span class="custom-select-label">{{label}}</span>
 			<span class="custom-select-arrow"></span>
-			<div class="custom-select-list">
+			<div class="custom-select-list" role="listbox">
 				<ul>
 					{{#items}}
-					<li><a href="#{{rel}}" rel="{{rel}}" class="{{#active}}active{{/active}}">{{text}}</a></li>
+					<li role="option"><a href="#{{rel}}" rel="{{rel}}" class="{{#active}}active{{/active}}">{{text}}</a></li>
 					{{/items}}
 				</ul>
 			</div>

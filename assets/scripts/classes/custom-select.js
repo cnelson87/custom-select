@@ -14,7 +14,9 @@ var CustomSelect = function($select, objOptions) {
 	this.options = $.extend({
 		className: 'custom-select-container',
 		selectorLabel: '.custom-select-label',
-		selectorTemplate: '#tmpCustomSelect'
+		selectorTemplate: '#tmpCustomSelect',
+		activeClass: 'active',
+		customEventName: 'CustomSelect'
 	}, objOptions || {});
 
 	this._init();
@@ -118,7 +120,7 @@ CustomSelect.prototype = {
 		if ($current[0] !== this.$current[0]) {
 			$current.click();
 		}
-		$.event.trigger('CustomSelect:selectChanged', [val]);
+		$.event.trigger(this.options.customEventName + ':selectChanged', [val]);
 	},
 
 	__onSelectFocus: function(e) {
@@ -128,12 +130,12 @@ CustomSelect.prototype = {
 
 	__onActive: function(e) {
 		//console.log('__onActive');
-		this.$el.addClass('active');
+		this.$el.addClass(this.options.activeClass);
 	},
 
 	__onInactive: function(e) {
 		//console.log('__onInactive');
-		this.$el.removeClass('active');
+		this.$el.removeClass(this.options.activeClass);
 	},
 
 	__onClick: function(e) {
