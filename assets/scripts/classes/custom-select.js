@@ -68,7 +68,7 @@ CustomSelect.prototype = {
 				//to set active...
 				//active: i === index ? true : false //...too fancy
 				active: false //...much simpler
-			}
+			};
 		}
 		//...and more direct
 		this.obData.items[index].active = true;
